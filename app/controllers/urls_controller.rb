@@ -6,4 +6,28 @@ class UrlsController < ApplicationController
     def show
     	@url = Url.find(params[:id])
 	end
+
+	def new
+  		@url = Url.new
+	end
+
+	def create
+	 		@url = Url.new(url_params)
+	  		@url.shorten
+  		if @url.save
+      		redirect_to @url  
+  		else
+      		render 'new'
+  		end   
+	end
+
+	private
+    # Using a private method to encapsulate the permissible parameters is just a good pattern
+    # since you'll be able to reuse the same permit list between create and update. Also, you
+    # can specialize this method with per-user checking of permissible attributes.
+    def url_params
+      params.require(:url).permit(:long_url)
+    end
+
+	
 end
