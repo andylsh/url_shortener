@@ -1,0 +1,11 @@
+<!--take note of the underscore! The underscore here represents that the view file we are creating is a partial view file and can be reused instead of typing out the form again and again (imagine having to create the same form for new and edit!)  -->
+<%= form_for @url do |f| %>
+  <p>
+    <%= f.label "Type your URL here:" %><br>
+    <%= f.text_field :long_url %>
+  </p>
+
+  <p>
+    <%= f.submit "Shorten URL!" %>
+  </p>
+    <% end %>
